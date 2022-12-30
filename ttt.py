@@ -114,7 +114,7 @@ def help_command(update, _):
 
 if __name__ == '__main__':
    # updater = Updater(getToken())  # получения токена из файла 'token.txt' и инициализация updater
-    updater = Updater('5800510923:AAGGIu2AuPktr_F6RmeJvwR-pbO-m5Q8D6o')
+    updater = Updater('kjhgkjghkjhgkjhg')
     # добавление обработчиков
     updater.dispatcher.add_handler(CommandHandler('start', newGame))
     updater.dispatcher.add_handler(CommandHandler('help', help_command))

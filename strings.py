@@ -1,5 +1,3 @@
-BOT_TOKEN_FILENAME = 'token.txt'
-
 # символы, которые используются
 SYMBOL_X = '❌'
 SYMBOL_O = '⭕'

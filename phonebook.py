@@ -120,7 +120,7 @@ def export_phonebook(update, context):
 
 def main():
     # Create the Updater and pass it the bot's token
-    updater = Updater('5800510923:AAGGIu2AuPktr_F6RmeJvwR-pbO-m5Q8D6o', use_context=True)
+    updater = Updater('jkhgkjhgkjhgk', use_context=True)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
