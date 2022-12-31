@@ -9,12 +9,9 @@ import strings as st
 
 
 def newGame(update, _):
-    # сформировать callBack данные для первой игры, то есть строку, состояющую из 9 неопределенных символов
     data = ''
     for i in range(0, 9):
         data += st.SYMBOL_UNDEF
-
-    # отправить сообщение для начала игры
     update.message.reply_text(st.ANSW_YOUR_TURN, reply_markup=InlineKeyboardMarkup(getKeyboard(data)))
 
 
@@ -52,14 +49,14 @@ def game(callBackData):
             if isWin(charList, st.SYMBOL_X):  
                 message = st.ANSW_YOU_WIN
             else:  
-                if countUndefinedCells(charList) != 0:  # проверка: есть ли свободные ячейки для хода
+                if countUndefinedCells(charList) != 0: 
                     isCycleContinue = True
                     while (isCycleContinue):
-                        rand = random.randint(0, 8)  # генерация случайного числа - клетки, в которую сходит бот
-                        if charList[rand] == st.SYMBOL_UNDEF:  # если клетка неопределенна, то ходит бот
+                        rand = random.randint(0, 8) 
+                        if charList[rand] == st.SYMBOL_UNDEF:  
                             charList[rand] = st.SYMBOL_O
-                            isCycleContinue = False  # смена значения переменной для остановки цикла
-                            if isWin(charList, st.SYMBOL_O):  # проверка: выиграл ли бот после своего кода
+                            isCycleContinue = False  
+                            if isWin(charList, st.SYMBOL_O): 
                                 message = st.ANSW_BOT_WIN
 
         else:
@@ -78,7 +75,7 @@ def game(callBackData):
             message += '\n | '
             for j in range(0, 3):
                 message += callBackData[j + i * 3] + ' | '
-        callBackData = None  # обнуление callBackData
+        callBackData = None  
 
     return message, callBackData, alert
 
@@ -87,7 +84,7 @@ def game(callBackData):
 
 def getKeyboard(callBackData):
     keyboard = [[], [], []]  
-    if callBackData != None:  # если
+    if callBackData != None:  
 
         for i in range(0, 3):
             for j in range(0, 3):
@@ -98,9 +95,9 @@ def getKeyboard(callBackData):
 
 def button(update, _):
     query = update.callback_query
-    callbackData = query.data  # получение callbackData, скрытых в кнопке
+    callbackData = query.data  
 
-    message, callbackData, alert = game(callbackData)  # игра
+    message, callbackData, alert = game(callbackData)  
     if alert is None:  
         query.answer()  
         query.edit_message_text(text=message, reply_markup=InlineKeyboardMarkup(getKeyboard(callbackData)))
@@ -113,14 +110,12 @@ def help_command(update, _):
 
 
 if __name__ == '__main__':
-   # updater = Updater(getToken())  # получения токена из файла 'token.txt' и инициализация updater
     updater = Updater('kjhgkjghkjhgkjhg')
-    # добавление обработчиков
     updater.dispatcher.add_handler(CommandHandler('start', newGame))
     updater.dispatcher.add_handler(CommandHandler('help', help_command))
-    updater.dispatcher.add_handler(MessageHandler(Filters.text, help_command))  # обработчик на любое текстовое сообщение
-    updater.dispatcher.add_handler(CallbackQueryHandler(button))  # добавление обработчика на CallBack кнопки
+    updater.dispatcher.add_handler(MessageHandler(Filters.text, help_command))  
+    updater.dispatcher.add_handler(CallbackQueryHandler(button))  
 
-    # Запуск бота
+
     updater.start_polling()
     updater.idle()
