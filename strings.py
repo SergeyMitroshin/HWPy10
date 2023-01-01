@@ -10,6 +10,4 @@ ANSW_BOT_WIN = 'Победил бот'
 ANSW_DRAW = 'Ничья'
 ANSW_HELP = 'Бот для игры в крестики-нолики\n\n' \
             'Используйте команду /new_game для начала новой игры'
-
-# ошибки
 ALERT_CANNOT_MOVE_TO_THIS_CELL = 'Нажимать можно только на ' + SYMBOL_UNDEF
